@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,minimal-ui,shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Hamster Kombat Minigame</title>
+    <style type="text/css">
+        body {
+            position: fixed;
+            margin: 0;
+            padding: 0
+        }
+
+        .canvas-app-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden
+        }
+
+        .canvas-app-container:-webkit-full-screen {
+            width: auto;
+            height: auto
+        }
+
+        #canvas {
+            outline: 0;
+            border: 0;
+            width: 100%;
+            vertical-align: bottom
+        }
+
+        #canvas-container {
+            position: relative
+        }
+
+        canvas:active,
+        canvas:focus {
+            outline: 0;
+            border: 0;
+            ie-dummy: expression(this.hideFocus=true);
+            -moz-outline-style: none
+        }
+
+        div {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .canvas-app-progress {
+            position: absolute;
+            background-color: #394046;
+            height: 6px;
+            margin-top: -6px;
+            width: 100%
+        }
+
+        .canvas-app-progress-bar {
+            font-size: 12px;
+            height: 6px;
+            color: #fff;
+            background-color: #1a72eb;
+            text-align: center;
+            line-height: 20px;
+            transition: transform 1s ease;
+            transform-origin: left;
+            transform: scaleX(1)
+        }
+
+        body {
+            background-color: #202020
+        }
+
+        .canvas-app-container {
+            background: #24292e;
+            background: -moz-linear-gradient(-45deg, #24292e 0, #24292e 49%, #262b31 50%, #262b31 100%);
+            background: -webkit-gradient(left top, right bottom, color-stop(0, #24292e), color-stop(49%, #24292e), color-stop(50%, #262b31), color-stop(100%, #262b31));
+            background: -webkit-linear-gradient(-45deg, #24292e 0, #24292e 49%, #262b31 50%, #262b31 100%);
+            background: -o-linear-gradient(-45deg, #24292e 0, #24292e 49%, #262b31 50%, #262b31 100%);
+            background: -ms-linear-gradient(-45deg, #24292e 0, #24292e 49%, #262b31 50%, #262b31 100%);
+            background: linear-gradient(135deg, #24292e 0, #24292e 49%, #262b31 50%, #262b31 100%)
+        }
+
+        .canvas-app-canvas {
+            background-repeat: no-repeat;
+            background-position: center center
+        }
+    </style>
+    <script src="src/script2.js"></script>
+    <script src="src/archive.js"></script>
+</head>
+
+<body>
+    <div id="app-container" class="canvas-app-container">
+        <div id="running-from-file-warning" merge="keep"></div>
+        <div id="webgl-not-supported" style="display:none;margin:3em">
+            <h1>WebGL not supported ⚠️</h1>
+            <p>WebGL is not supported by your browser - visit <a
+                    href="https://get.webgl.org/">https://get.webgl.org/</a> to learn more.</p>
+        </div>
+        <div id="canvas-container" class="canvas-app-canvas-container">
+            <canvas id="canvas" class="canvas-app-canvas" tabindex="1" width="974" height="900"></canvas>
+        </div>
+        <div class="buttons-background">
+        </div>
+    </div>
+    <button onclick="startLevel()">Restart</button>
+    <script src="src/script.js"></script>
+    <script id="engine-start" type="text/javascript" merge="keep" src="src/engine-start.js"> </script>
+    <script>
+        SetCallbackSceneLoaded(startLevel)
+
+        function startLevel() {
+            window.postMessage(
+            JSON.stringify({ 
+                method: "StartGame", 
+                level: "a a d e e -.b c d - f g.b c 0 0 f g.- - - x - g.- - - x h h.- - - x - -", 
+                number: 0, 
+            })
+        )
+        }
+    </script>
+</body>
+
+</html>
