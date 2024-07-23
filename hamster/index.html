@@ -127,7 +127,7 @@
     <div style="margin-top: 20px; margin-left: 20px;">
         <select id="game-picker" onchange="gamePickerChanged(event)"></select>
         <button onclick="startLevelIndex(currentLevelIndex)">Restart</button>
-        <button onclick="showYouWon()">W</button>
+        <!-- <button onclick="showYouWon()">W</button> -->
     </div>
 
     <script src="src/script.js"></script>
@@ -147,10 +147,10 @@
         var currentLevelIndex = 0;
 
         var games = [
-            // {
-            //     name: "24 july",
-            //     level: "d a d e e -.b c d - f g.b c 0 0 f g.- - - x - g.- - - x h h.- - - x - -",
-            // },  
+            {
+                name: "24 july",
+                level: "d a d e e -.b c d - f g.b c 0 0 f g.- - - x - g.- - - x h h.- - - x - -",
+            },  
             {
                 name: "23 july",
                 level: "a a d e e -.b c d - f g.b c 0 0 f g.- - - x - g.- - - x h h.- - - x - -",
