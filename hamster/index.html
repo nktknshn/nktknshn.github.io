@@ -116,8 +116,10 @@
         </div>
     </div>
 
-    <div id="you-won" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(35, 31, 31, 0.714); z-index: 1000;">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(21, 20, 20, 0.679); padding: 20px;">
+    <div id="you-won"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(35, 31, 31, 0.714); z-index: 1000;">
+        <div
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(21, 20, 20, 0.679); padding: 20px;">
             <h1 style="color: white;">You won!</h1>
             <button onclick="hideYouWon()">Close</button>
         </div>
@@ -126,7 +128,7 @@
     <div style="margin-top: 20px; margin-left: 20px;">
         <select id="game-picker" onchange="gamePickerChanged(event)"></select>
         <button onclick="startLevelIndex(currentLevelIndex)">Restart</button>
-        <!-- <button onclick="showYouWon()">W</button> -->
+        <p id="timer" style="display: inline-block; margin-left: 20px; color: white">0</p>
     </div>
 
     <script src="src/script.js"></script>
@@ -134,6 +136,14 @@
     <script id="engine-start" type="text/javascript" me rge="keep" src="src/engine-start.js"> </script>
 
     <script>
+
+        var currentLevelIndex = 0;
+        var timerSeconds = 0;
+
+        function timerTick() {
+            timerSeconds++;
+            document.getElementById("timer").innerText = timerSeconds;
+        }
 
         function showYouWon() {
             document.getElementById("you-won").style.display = "block";
@@ -143,13 +153,11 @@
             document.getElementById("you-won").style.display = "none";
         }
 
-        var currentLevelIndex = 0;
-
         var games = [
             {
                 name: "24 july",
                 level: "- a - - c c.- a b b d -.0 0 e - d -.f f e g g h.s z z x - h.s - - x - h",
-            },  
+            },
             {
                 name: "23 july",
                 level: "a a d e e -.b c d - f g.b c 0 0 f g.- - - x - g.- - - x h h.- - - x - -",
@@ -173,12 +181,15 @@
         }
 
         function startLevelConfig(level) {
+            timerSeconds = 0;
+
+            // start interval
+            clearInterval(window.timerInterval);
+            window.timerInterval = setInterval(timerTick, 1000);
+            document.getElementById("timer").innerText = 0;
+
             window.postMessage(
-                JSON.stringify({
-                    method: "StartGame",
-                    level,
-                    number: 0,
-                })
+                JSON.stringify({ method: "StartGame", level, number: 0 })
             )
         }
     </script>
